@@ -51,5 +51,9 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
+  it('should not error when running contains when LinkedList is empty', function(){
+    expect(linkedList.contains(6)).to.equal(false);
+  });
+
   // add more tests here to test the functionality of linkedList
 });
