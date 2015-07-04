@@ -17,27 +17,39 @@ treeMethods.addChild = function(value){
 };
 
 treeMethods.contains = function(target){
-	
-	var res = false;
 
-	var checkTree = function(tree) {
-		if(tree.value === target) {
-			res = true;
-		} else {
-			_.each(tree.children, function(child) {
-				if (child.value === target) {
-					res = true;
-				}
-				_.each(child.children, function(grandchild) {
-					//debugger;
-					checkTree(grandchild);
-					//console.log(grandchild.value);
-				});
-			});
-		}
+	if(this.value && this.value === target) {
+		return true;
 	}
-	checkTree(this);
-	return res;
+	var fil = _.filter(this.children, function(leaf){
+		return leaf.contains(target);
+	});
+	if(fil.length > 0) {
+		return true;
+	} else {
+		return false;
+	}
+	
+	// var res = false;
+
+	// var checkTree = function(tree) {
+	// 	if(tree.value === target) {
+	// 		res = true;
+	// 	} else {
+	// 		_.each(tree.children, function(child) {
+	// 			if (child.value === target) {
+	// 				res = true;
+	// 			}
+	// 			_.each(child.children, function(grandchild) {
+	// 				//debugger;
+	// 				checkTree(grandchild);
+	// 				//console.log(grandchild.value);
+	// 			});
+	// 		});
+	// 	}
+	// }
+	// checkTree(this);
+	// return res;
 };
 
 
